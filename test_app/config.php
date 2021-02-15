@@ -3,7 +3,7 @@
   // Don't do this in live production! Instead, these values are
   // usually stored as environmental variables some place safe.
   $dbname = "test_app";
-  $dbuser = "demo-user";
+  $dbuser = "%";
   $dbpass = "Mirandagracegaudet123$";
 
   //opens a new mysqli connection (the preferred method today)

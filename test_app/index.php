@@ -28,7 +28,7 @@
       <h2>Display All Entries</h2>
       <ul>
         <?php
-          $con = new mysqli("localhost", $dbuser, $dbpass, $dbname);
+          $con = new mysqli("%", $dbuser, $dbpass, $dbname);
           $call = "SELECT make, model, year FROM cars";
           $answer = $con->query($call);
           while ($line = $answer->fetch_array(MYSQLI_ASSOC)) {
