@@ -1,3 +1,11 @@
-color{
-  red
+body{
+  color: #5C5760;
+justify-content: center;
+padding-left: 8rem;
+padding-right: 8rem;
+}
+
+h1{
+  text-align: center;
+  padding: 1rem;
 }
