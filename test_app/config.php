@@ -7,7 +7,7 @@
   $dbpass = "Mirandagracegaudet123$";
 
   //opens a new mysqli connection (the preferred method today)
-  $mysqli = new mysqli("%", $dbuser, $dbpass, $dbname);
+  $mysqli = new mysqli("localhost", $dbuser, $dbpass, $dbname);
 
   /* check connection */
   if ($mysqli->connect_errno) {
