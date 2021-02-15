@@ -3,11 +3,11 @@
   // Don't do this in live production! Instead, these values are
   // usually stored as environmental variables some place safe.
   $dbname = "test_app";
-  $dbuser = "%";
+  $dbuser = "demo-user";
   $dbpass = "Mirandagracegaudet123$";
 
   //opens a new mysqli connection (the preferred method today)
-  $mysqli = new mysqli("%", $dbuser, $dbpass, $dbname);
+  $mysqli = new mysqli("localhost", $dbuser, $dbpass, $dbname);
 
   /* check connection */
   if ($mysqli->connect_errno) {
