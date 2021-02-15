@@ -7,12 +7,12 @@
   </head>
   <body>
     <div>
-      <h2>Have We DB?</h2>
+      <h2>Are we connected to DB?</h2>
       <?php include "config.php" ?>
       <hr />
     </div>
     <div>
-      <h2>Display One Entry</h2>
+      <h2>The nicest car</h2>
       <?php
         $query = "SELECT make, model, year FROM cars";
         $result = $mysqli->query($query);
@@ -25,7 +25,7 @@
       <hr />
     </div>
     <div>
-      <h2>Display All Entries</h2>
+      <h2>All the other options</h2>
       <ul>
         <?php
           $con = new mysqli("localhost", $dbuser, $dbpass, $dbname);
