@@ -2,7 +2,7 @@
   // In this example, important values are stored in plaintext.
   // Don't do this in live production! Instead, these values are
   // usually stored as environmental variables some place safe.
-  $dbname = "test_app";
+  $dbname = "eg_demo";
   $dbuser = "demo-user";
   $dbpass = "Mirandagracegaudet123$";
 
