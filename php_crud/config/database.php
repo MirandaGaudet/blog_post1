@@ -2,7 +2,7 @@
 // used to connect to the database
 $host = "localhost";
 $db_name = "php_crud";
-$username = "demo-user";
+$username = "php_crud";
 $password = "Mirandagracegaudet123$";
 
 try {
