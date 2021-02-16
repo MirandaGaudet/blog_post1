@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <h1> Adding Domains</h1>
+    <meta charset="utf-8">
+    <title>Blog Post 1</title>
+    <link rel="stylesheet" href="css/style.css">
+<body>
+  <p>When first starting this class, the first few weeks were extremely overwhelming. I didn’t really understand what was going on and one thing that was difficult for me was adding domains because it was one of the first steps you needed in order to do any of your projects and I didn’t really fully understand what a domain was. In order to jump into how to add a domain, I think it would be appropriate to first understand what a domain is. According to google, A domain is essentially your websites equivalent of a physical address. In the same way that a GPS needs a street address or a zip code to provide directions, a web browser needs a domain name to direct you to a website.
+  </p>
+  <p>A domain name takes the form of two main elements. For example, the domain name Facebook.com consists of two main elements. One being Facebook which is the websites name and the domain extension being the .com. When purchasing a domain name, you have the power to specify which server the domain points to.
+  </p>
+<p>Now that you guys understand what a domain is, lets jump into how to add one. First, you have to purchase a cloud server, for example the server we use is Digital ocean. Once you have purchased Digital ocean, you can add a droplet which is a cloud server.
+</p>
+<p>The next step is you have to purchase a domain. I got a domain off of “Google Domains for 15 dollars a year. There are other sites like mydomainname.com where you can purchase one as well. The one thing I notice from that site is you don’t have as many options as you do on google domains. Go ahead and purchase your very own domain then move onto the next step.
+</p>
+<p>Now what you want to do is in the control panel of digital ocean, you want to open the create menu and click Domain/DNS.
+</p>
+<p>This will bring you to the networking sections Domains tab. Here, you will enter your domain into the enter domain field, then you will click add domain.
+</p>
+<p>When typing your domain name in, the system will perform a DNS lookup to see if there is an existing name for that domain for example it would say “data domain (example.com): Name already exists.” But in your case since you just bought the domain you will know that this probably won’t happen and, in your case, you will just add the domain. Your domain and any other you might have will then be listed on the Domains page
+</p>
+<p>Once you have added the domain, you can click on the name to view and modify its DNS records. For this section, you will want to change the value which is where the domain directs to. So, for example, you want to add your droplet IP address to make sure it directs to there. In order to so that where it says create new record, you want to click and make it a type A, then add the hostname, which will be your domain name then you will want to direct it to your droplets IP address. The DNS records section lists any existing records for the domain.
+</p>
+<p>One more step that I had an issue with when I was setting up my domain through shell scripting, it wasn’t connecting and I realized I had to go to my actual domain on google domains and click DNS in the side bar on the left and change the name server to ns1.digitalocean.com, ns2.digitalocean.com and ns3.digitalocean.com. you have to add 3 of the same servers.This step helped to connect my domain so if you are having troubles make sure you include this step. I hope this tutorial helps in any way possible.
+</p>
+</body>
+
+</html>
