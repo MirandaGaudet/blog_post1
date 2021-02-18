@@ -42,7 +42,25 @@ CREATE TABLE IF NOT EXISTS `products` (
   (8, 'Pillow', 'Sleeping well is important.', 8.99, '2015-08-02 12:18:56', '2015-08-06 06:59:18');
 
 </p>
+<p>Step 3: Next you are going to want to create a folder on atom that connected to your PDO. Name the folder after what you called it (PHP_crud). Inside that folder, add a folder called “Config”  and inside that folder create a file called “database.php”. Inside the “database.php, add this code :
+  <?php
+  // used to connect to the database
+  $host = "localhost";
+  $db_name = "php_beginner_crud_level_1";
+  $username = "root";
+  $password = "";
 
+  try {
+      $con = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
+  }
+
+  // show error
+  catch(PDOException $exception){
+      echo "Connection error: " . $exception->getMessage();
+  }
+  ?>
+  Your database is now setup! In order to check to make sure it’s all working, go onto phpMyAdmin and click the database table to see them.
+</p>
 
 
 
