@@ -11,7 +11,7 @@
 </p>
 <p>Step 1: First step… you are going to be preparing the data base. So, what you want to do is go to your phpMyAdmin and create a data base name, something short that you’re going to remember for example, “php_crud”. You always want to make sure the collation is “utf8mb4_general_ci” after this step is complete, hit the “Create” button.
 </p>
-<p1>Step 2: Next step is you’re going to want to run the SQL code.
+<p>Step 2: Next step is you’re going to want to run the SQL code.
 --
 -- Table structure for table `products`
 --
@@ -26,8 +26,22 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
-</p1>
+</p>
+<p>Your going want to again put this code into the SQL code. This code is for the sample data or record on our products database table
+  --
+  -- Dumping data for table `products`
+  --
 
+  INSERT INTO `products` (`id`, `name`, `description`, `price`, `created`, `modified`) VALUES
+  (1, 'Basketball', 'A ball used in the NBA.', 49.99, '2015-08-02 12:04:03', '2015-08-06 06:59:18'),
+  (3, 'Gatorade', 'This is a very good drink for athletes.', 1.99, '2015-08-02 12:14:29', '2015-08-06 06:59:18'),
+  (4, 'Eye Glasses', 'It will make you read better.', 6, '2015-08-02 12:15:04', '2015-08-06 06:59:18'),
+  (5, 'Trash Can', 'It will help you maintain cleanliness.', 3.95, '2015-08-02 12:16:08', '2015-08-06 06:59:18'),
+  (6, 'Mouse', 'Very useful if you love your computer.', 11.35, '2015-08-02 12:17:58', '2015-08-06 06:59:18'),
+  (7, 'Earphone', 'You need this one if you love music.', 7, '2015-08-02 12:18:21', '2015-08-06 06:59:18'),
+  (8, 'Pillow', 'Sleeping well is important.', 8.99, '2015-08-02 12:18:56', '2015-08-06 06:59:18');
+
+</p>
 
 
 
