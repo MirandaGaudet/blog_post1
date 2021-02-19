@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <h1> PHP Design pattern: Singleton</h1>
+  <h1> PHP Design pattern: Decorator</h1>
     <meta charset="utf-8">
     <title>Blog Post 2</title>
     <link rel="stylesheet" href="css/style.css">
 <body>
-
-
+<p> The PHP design pattern that im going to be talking about is Decorator. Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+</p>
+<p> you will want to use decorator pattern when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects. You can also use this pattern when its awkward or not possible to extend an objects behavior using inheritance.
+</p>
+<p> heres how you will implement it....
+</p>
+<p> 1) Make sure your business domain can be represented as a primary component with multiple optional layers over it.
+</p>
+<p> 2) Figure out what methods are common to both the primary component and the optional layers. Create a component interface and declare those methods there.
+</p>
+<p> 3) Create a concrete component class and define the base behavior in it.
+</p>
+<p>4) Create a base decorator class. It should have a field for storing a reference to a wrapped object. The field should be declared with the component interface type to allow linking to concrete components as well as decorators. The base decorator must delegate all work to the wrapped object.
+</p>
+<p>5) Make sure all classes implement the component interface.
+</p>
+<p> 6) Create concrete decorators by extending them from the base decorator. A concrete decorator must execute its behavior before or after the call to the parent method (which always delegates to the wrapped object).
+</p>
+<p>7) The client code must be responsible for creating decorators and composing them in the way the client needs.
+</p>
 
 
 </body>
