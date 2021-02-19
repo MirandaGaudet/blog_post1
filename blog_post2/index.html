@@ -1,99 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <h1> How to Create a PHP app</h1>
+  <h1> PHP Design pattern: Singleton</h1>
     <meta charset="utf-8">
     <title>Blog Post 2</title>
     <link rel="stylesheet" href="css/style.css">
 <body>
-  <p>When reading the instructions that were given to us, at times it was hard to comprehend what they were asking. So, if you were stuck on creating the php app like I was, this is the perfect blog to read up on.
-  </p>
-<p>Like I did in my first blog, I’m going to give a background of what the assignment actually is about before we dive into the steps to achieve your PHP Crud app. There are going to be 6 project file structures that you are going to be doing in order to have your php Crud app running smoothly.
-</p>
-<p>Step 1: First step… you are going to be preparing the data base. So, what you want to do is go to your phpMyAdmin and create a data base name, something short that you’re going to remember for example, “php_crud”. You always want to make sure the collation is “utf8mb4_general_ci” after this step is complete, hit the “Create” button.
-</p>
-<p>Step 2: Next step is you’re going to want to run the SQL code.
---
--- Table structure for table `products`
---
-
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `description` text NOT NULL,
-  `price` double NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
-</p>
-<p>Your going want to again put this code into the SQL code. This code is for the sample data or record on our products database table
-  --
-  -- Dumping data for table `products`
-  --
-
-  INSERT INTO `products` (`id`, `name`, `description`, `price`, `created`, `modified`) VALUES
-  (1, 'Basketball', 'A ball used in the NBA.', 49.99, '2015-08-02 12:04:03', '2015-08-06 06:59:18'),
-  (3, 'Gatorade', 'This is a very good drink for athletes.', 1.99, '2015-08-02 12:14:29', '2015-08-06 06:59:18'),
-  (4, 'Eye Glasses', 'It will make you read better.', 6, '2015-08-02 12:15:04', '2015-08-06 06:59:18'),
-  (5, 'Trash Can', 'It will help you maintain cleanliness.', 3.95, '2015-08-02 12:16:08', '2015-08-06 06:59:18'),
-  (6, 'Mouse', 'Very useful if you love your computer.', 11.35, '2015-08-02 12:17:58', '2015-08-06 06:59:18'),
-  (7, 'Earphone', 'You need this one if you love music.', 7, '2015-08-02 12:18:21', '2015-08-06 06:59:18'),
-  (8, 'Pillow', 'Sleeping well is important.', 8.99, '2015-08-02 12:18:56', '2015-08-06 06:59:18');
-
-</p>
-<p>Step 3: Next you are going to want to create a folder on atom that connected to your PDO. Name the folder after what you called it (PHP_crud). Inside that folder, add a folder called “Config”  and inside that folder create a file called “database.php”. Inside the “database.php, add this code :
-  <?php
-  // used to connect to the database
-  $host = "localhost";
-  $db_name = "php_beginner_crud_level_1";
-  $username = "root";
-  $password = "";
-
-  try {
-      $con = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
-  }
-
-  // show error
-  catch(PDOException $exception){
-      echo "Connection error: " . $exception->getMessage();
-  }
-  ?>
-  Your database is now setup! In order to check to make sure it’s all working, go onto phpMyAdmin and click the database table to see them.
-</p>
-<p>Next you will want to create or insert Record in PHP. Its recommended to use Bootstrap user interface. You are going to want to go back to your folder named “PHP_crud” and your going to want to create a new file called “Create.php” add this code in there.
-</p>
-<p>
-  Step 5: Add this code in the same file where it says <!-- html form to create product will be here -->
 
 
-<!-- PHP insert code will be here -->
-
-<!-- html form here where the product information will be entered -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-    <table class='table table-hover table-responsive table-bordered'>
-        <tr>
-            <td>Name</td>
-            <td><input type='text' name='name' class='form-control' /></td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td><textarea name='description' class='form-control'></textarea></td>
-        </tr>
-        <tr>
-            <td>Price</td>
-            <td><input type='text' name='price' class='form-control' /></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' value='Save' class='btn btn-primary' />
-                <a href='index.php' class='btn btn-danger'>Back to read products</a>
-            </td>
-        </tr>
-    </table>
-</form>
-</p>
 
 
 </body>
