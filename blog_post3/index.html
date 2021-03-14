@@ -2,13 +2,151 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Installing Gatsby and creating a new project</title>
+    <title>Blog_post3</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-<p> Step 15:  Download the Gatsby CLI package. Type this command to start a new site
-<code> npm install -g gatsby-cli</code>
-</p>
+<h1>Installing Gatsby</h1>
+<h2> Step 1: Installing gatsby and creatiing a new project.</h2>
+<p>  First and formost, you want to install Gatsby and create a new project. In order to do that you need to log into your terminal and download the Gatsby CLI package.
+ Type this command to start a new site </p>
+<p><code> $ npm install -g gatsby-cli</code></p>
 
+<p> In order to check several commands that might be helpful to develop your gatsby site please type</p>
+<p> <code> gatsby help </code> </P>
+ <p> This input will be shown </p>
+<code>Output
+<p> Usage: gatsby command [options]</p>
+
+<p> Commands:</p>
+  gatsby develop                   Start development server. Watches files, rebuilds, and hot reloads if something changes
+  gatsby build                     Build a Gatsby project.
+  gatsby serve                     Serve previously built Gatsby site.
+  gatsby info                      Get environment information for debugging and issue reporting
+  gatsby clean                     Wipe the local gatsby environment including built assets and cache
+  gatsby repl                      Get a node repl with context of Gatsby environment, see
+                                   (https://www.gatsbyjs.org/docs/gatsby-repl/)
+  gatsby new [rootPath] [starter]  Create new Gatsby project.
+  gatsby plugin                    Useful commands relating to Gatsby plugins
+  gatsby telemetry                 Enable or disable Gatsby anonymous analytics collection.
+...</code>
+<p> Checkout the tutorial to see what each command does...</p>
+<p> you will need to type </p>
+<p><code>gatsby new gatsby-starter-default https://github.com/gatsbyjs/gatsby-starter-default
+</code></p>
+<p> The <code>Gatsby New</code> will create a new site and the <code>gatsby-starter-default</code> will make a template and will name the project after the template </p>
+<p> if this command pops up, it means you have successfully installed a Gatsby starter template </p>
+<p> <code>Output
+...
+Your new Gatsby site has been successfully bootstrapped. Time to change into the directory
+
+  cd gatsby-starter-default
+  gatsby develop</code> </p>
+  <p> You will want to modify a few sections to fit your own personalized Gatsby site </p>
+  <p> That includes... </p>
+  <p> <code>gatsby-config.js</code> contains your site-wide customizations. This is where you will modify metadata and add Gatsby plugins. </p>
+<p> <code>src</code> directory contains all of the pages, images, and components that make up the website. In React, components are isolated parts of a website. For instance, in your website, the <code>index</code> page is made up of <code>layout, image,</code> and <code>seo</code> components.
+<p> Now that you are done creating a Gatsby project and have a better understanding of the file structure, it is time to dig deep into your project and customize your sites metadata. </p>
+<h2>Step 2: Modifying the Title, Description, and Author Metadata in Your Gatsby Config</h2>
+<p> In order to have your website discovered by a search engine, its very important to correctly format your metadata. in this section, you will configure the title, description and author metadata in your application </p>
+<p> <code>/gatsby config</code> is Gatsby’s configuration file. This is where you will find the site Metadata object. The site metadata helps boosts your site’s SEO and makes it more discoverable by search engines.</p>
+<p> Open <code>gatsby-config.js</code> in a text editor tp view Gatsby’s configuration. <code>nano </code>is the name of the text editor this tutorial will use to view the Gatsby config file, but you can use the editor of your choice:
+<p><code>nano gatsby-config.js</code></p>
+<P> This should be the following information that pops up </p>
+  <p> <code>module.exports = {
+  siteMetadata: {
+    title: `Gatsby Default Starter`,
+    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    author: `@gatsbyjs`,
+  },
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+  ],
+}
+</code></p>
+<p>Replace the text for title, description, and author with the following  code: </p>
+<code><p> module.exports = { </p>
+  <p>siteMetadata: {</p>
+  <p>  title: `Getting Started with Gatsby`,</p>
+    <p>description: `A tutorial that goes over Gatsby development`,</p>
+    <p>author: `@digitalocean`,</p>
+<p>  },</p> </code>
+<p> Save and exit the file. </p>
+<p> Now when Google or another search engine visits your website, it will retrieve the data associated with your app. you have changed the metadata; next you will change one of the websites pages. </p>
+<h2> Step 3: Modifying the Index page </h2>
+<p>In this section you are going to learn about JSX, change the markup on the <code>index</code> page, add an image, and run your Gatsby site locally.
+<p>It is time to see what the Gatsby website looks like in your browser. Open a new window in the terminal and enter <code>gatsby develop</code> in the command line to view the local version of the site:</p>
+<p> This commad will start the development server. Try to go access your site at <code>localhost:8000</code> </p>
+<p> You are going to change the markup on the page to make it look more like the content you would find on an e-commerce site. Change the markup on the <code>index</code> page:
+<p> <code>nano src/pages/index.js</code></p>
+<p> this is what you will find in the text editor </p>
+<p>  <code>import React from "react"
+import { Link } from "gatsby"
+
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
+
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" />
+    h1>Hi people</h1
+  <p>  <p>Welcome to your new Gatsby site.</p> </p>
+    <p>Now go build something great.</p>
+    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <Image />
+    </div>
+    <Link to="/page-2/">Go to page 2</Link> <br />
+    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+  </Layout>
+)
+
+export default IndexPage </code>
+<p>The code here is JSX. JSX allows you to write HTML elements in JavaScript. If you want a more comprehensive overview of JSX, go to our JSX tutorial.</p>
+<p>In the text editor, replace <code>Hi People<code> with <code>Hello Shoppers, we are open for business</code> and <code>Welcome to your new Gatsby site.</code> with </code>We sell fresh fruit.</code> Delete <code>Now go build something great.</code></p>:
+<p>Save your changes. There is no need to start and stop the development server because Gatsby comes with hot reloading. Hot reloading refreshes the files in your app that you’ve changed:</p>
+<p> you now need to change the image from Gatsby astronaut to Sammy the Shark. Open the image in your browser and download the image <code>src/images</code> folder in your Gatsby project. Save the image as <code>sammy-shark.jpeg</code> </p>
+<p> Navigate to see if the image is in the right folder. </p>
+<p> <code>cd src/images</code> </p>
+<p> type <code> ls</code> to make your way to the images directory. if the command list looks like this, the image is in the file. </p>
+<p>Output</p>
+<p> gatsby-astronaut.png gatsby-icon.png           sammy-shark.jpeg </p>
+<p>Now that you have confirmed that the file is there, you will open <code>image.js</code> in your favorite text editor. You are about to swap out the Gatsby astronaut image with Sammy the Shark.</p>
+<p> returm to <code>src</code> Directory.
+  <p><code>cd..</code></p>
+  <p> Now open the <code>image.js </code>component:</p>
+  <p><code>nano components/image.js</code></p>
+  <p> In the text editor you were working with earlier, replace <code>gatsby-astronaut.png</code> with <code>sammy-shark.jpeg</code>:</p>
+<p>Save the file. The server will restart, and you will find Sammy the Shark on your Gatsby page:</p>
+<p> If sammy the Shark is Present, you are Complete.</p>
+<p>You now have your Gatsby e-commerce site up and running locally.</p>
+<h2> Conclusion </h2>
+<p>In this tutorial, you created your first Gatsby website. You have learned how to set up a basic Gatsby site on your local machine. Now that you can create and customize a Gatsby app, the next step is to deploy your Gatsby e-commerce site.</p>
+<h1> Congratulations ! :)</h1>
 
 
   </body>
