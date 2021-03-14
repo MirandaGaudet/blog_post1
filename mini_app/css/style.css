@@ -5,6 +5,15 @@ html {
 	line-height: 1rem;
 	letter-spacing: .08rem;
 }
+h1{
+text-align: center;
+	background-color: #85B5C1;
+  width: 300px;
+  border: 8px solid grey;
+  padding: 50px;
+  margin: 20px;
+height: 25rem;
+}
 
 body {
 	display: flex;
@@ -13,7 +22,7 @@ body {
 	flex-flow: column;
 	font-size: 1.4rem;
 	font-weight: inherit;
-	background-color: #1fc69d;
+	background-color: #78CAD2;
 	height: 100vh;
 	width: 100vw;
 }

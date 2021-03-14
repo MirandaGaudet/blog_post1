@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <h1> PHP Design pattern: Decorator</h1>
+  <h1> How to Create a PHP app</h1>
     <meta charset="utf-8">
     <title>Blog Post 2</title>
     <link rel="stylesheet" href="css/style.css">
 <body>
-<p> The PHP design pattern that im going to be talking about is Decorator. Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
+<p> When reading the instructions that were given to us, at times it was hard to comprehend what they were asking. So, if you were stuck on creating the PHP app like I was, this is the perfect blog to read up on.
 </p>
-<p> You will want to use decorator pattern when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects. You can also use this pattern when its awkward or not possible to extend an objects behavior using inheritance.
+<p> Like I did in my first blog, I’m going to give a background of what the assignment actually is about before we dive into the steps to achieve your PHP Crud app. There are going to be 6 project file structures that you are going to be doing in order to have your php Crud app running smoothly.
 </p>
-<p> Heres how you will implement it....
+<p>Step 1: First step… you are going to be preparing the data base. So, what you want to do is go to your phpMyAdmin and create a data base name, something short that you’re going to remember for example, “php_crud”. You always want to make sure the collation is “utf8mb4_general_ci” after this step is complete, hit the “Create” button.
 </p>
-<p> 1) Make sure your business domain can be represented as a primary component with multiple optional layers over it.
+<p> Step 2: Next step is you’re going to want to run the SQL code. The reason the create this is for the products database <code> --
+-- Table structure for table `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` text NOT NULL,
+  `price` double NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+</code>
 </p>
 <p> 2) Figure out what methods are common to both the primary component and the optional layers. Create a component interface and declare those methods there.
 </p>
