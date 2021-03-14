@@ -1,0 +1,26 @@
+html{
+  border: 8px solid grey;
+}
+
+
+h1{
+  text-align: center;
+  padding: 50px;
+  text-decoration: underline;
+  font-style: italic;
+}
+h2{
+  padding: 10px;
+  font-style: italic;
+}
+body{
+  background-color: #64BFF7;
+}
+code{
+
+    text-shadow: 1px 1px 2px #000000;
+}
+p{
+  font-size: 20px;
+
+}
