@@ -1,18 +1,18 @@
 html {
-	font-size: 60.5%;
+	font-size: 85%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 300;
 	line-height: 1rem;
 	letter-spacing: .08rem;
 }
+
+
+
 h1{
-text-align: center;
-	background-color: #85B5C1;
-  width: 300px;
-  border: 8px solid grey;
-  padding: 50px;
-  margin: 20px;
-height: 25rem;
+font-size: 75px;
+padding: 50px;
+font-style: oblique;
+font-weight: lighter;
 }
 
 body {
@@ -28,6 +28,12 @@ body {
 }
 
 .container {
+	text-align: center;
+		background-color: #85B5C1;
+	  padding: 50px;
+	  margin: 30px;
+	height: 25rem;
+
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -35,7 +41,7 @@ body {
 	align-items: center;
 	height: 20rem;
 	width: 60rem;
-	background-color: transparent;
+
 	border-radius: 3px;
 	box-shadow: none;
 }
@@ -88,6 +94,8 @@ body {
 	max-width: 500px;
 	width: 100%;
 	margin: 0 auto 10px;
+	position: relative;
+	z-index: 10;
 }
 input#time-to {
 	padding: 5px;
@@ -99,6 +107,12 @@ input#time-to {
 	color: #010101;
 	background-color: #fff;
 }
+canvas{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
 .done {
 	color: #fff;
 	font-weight: 600;
