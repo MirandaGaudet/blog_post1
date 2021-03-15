@@ -1,32 +1,599 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <h1> PHP Design pattern: Decorator</h1>
+  <h1> How to Create a PHP App </h1>
     <meta charset="utf-8">
-    <title>Blog Post 2</title>
+    <title>Blog Post 2 </title>
     <link rel="stylesheet" href="css/style.css">
 <body>
-<p> The PHP design pattern that im going to be talking about is Decorator. Decorator is a structural design pattern that lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors.
-</p>
-<p> You will want to use decorator pattern when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects. You can also use this pattern when its awkward or not possible to extend an objects behavior using inheritance.
-</p>
-<p> Heres how you will implement it....
-</p>
-<p> 1) Make sure your business domain can be represented as a primary component with multiple optional layers over it.
-</p>
-<p> 2) Figure out what methods are common to both the primary component and the optional layers. Create a component interface and declare those methods there.
-</p>
-<p> 3) Create a concrete component class and define the base behavior in it.
-</p>
-<p>4) Create a base decorator class. It should have a field for storing a reference to a wrapped object. The field should be declared with the component interface type to allow linking to concrete components as well as decorators. The base decorator must delegate all work to the wrapped object.
-</p>
-<p>5) Make sure all classes implement the component interface.
-</p>
-<p> 6) Create concrete decorators by extending them from the base decorator. A concrete decorator must execute its behavior before or after the call to the parent method (which always delegates to the wrapped object).
-</p>
-<p>7) The client code must be responsible for creating decorators and composing them in the way the client needs.
-</p>
+<p> When reading the instructions that were given to us, at times it was hard to comprehend what they were asking. So, if you were stuck on creating the PHP app like I was, this is the perfect blog to read up on. </p>
+<h2> Step 1</h2>
+<p> First step… you are going to be preparing the data base. So, what you want to do is go to your phpMyAdmin and create a data base name, something short that you’re going to remember for example, “php_crud”. You always want to make sure the collation is “utf8mb4_general_ci” after this step is complete, hit the “Create” button. </p>
+<h2> Step 2 </h2>
+<p>Next step is you’re going to want to run the SQL code. The reason the create this is for the products database. </p>
+<code> --
+-- Table structure for table `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` text NOT NULL,
+  `price` double NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+</code>
+<p> Your going want to again put this code into the SQL code. This code is for the sample data or record on our products database table </p>
+<code> --
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `price`, `created`, `modified`) VALUES
+(1, 'Basketball', 'A ball used in the NBA.', 49.99, '2015-08-02 12:04:03', '2015-08-06 06:59:18'),
+(3, 'Gatorade', 'This is a very good drink for athletes.', 1.99, '2015-08-02 12:14:29', '2015-08-06 06:59:18'),
+(4, 'Eye Glasses', 'It will make you read better.', 6, '2015-08-02 12:15:04', '2015-08-06 06:59:18'),
+(5, 'Trash Can', 'It will help you maintain cleanliness.', 3.95, '2015-08-02 12:16:08', '2015-08-06 06:59:18'),
+(6, 'Mouse', 'Very useful if you love your computer.', 11.35, '2015-08-02 12:17:58', '2015-08-06 06:59:18'),
+(7, 'Earphone', 'You need this one if you love music.', 7, '2015-08-02 12:18:21', '2015-08-06 06:59:18'),
+(8, 'Pillow', 'Sleeping well is important.', 8.99, '2015-08-02 12:18:56', '2015-08-06 06:59:18');
+
+</code>
+<h2> Step 3</h2>
+<p>Next you are going to want to create a folder on atom that connected to your PDO. Name the folder after what you called it (PHP_crud). Inside that folder, add a folder called “Config”  and inside that folder create a file called “database.php”. Inside the “database.php, add this code :</p>
+<code> ?php
+ // used to connect to the database
+$host = "localhost";
+$db_name = "php_beginner_crud_level_1";
+$username = "root";
+$password = "";
+
+try {
+    $con = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
+}
+
+// show error
+catch(PDOException $exception){
+    echo "Connection error: " . $exception->getMessage();
+}
+?>
+</code>
+<p> Your database is now setup! In order to check to make sure it’s all working, go onto phpMyAdmin and click the database table to see them. </p>
+<h2> Step 4</h2>
+<p>Next you will want to create or insert Record in PHP. Its recommended to use Bootstrap user interface. You are going to want to go back to your folder named “PHP_crud” and your going to want to create a new file called “Create.php” add this code in there. </p>
+<code>
+  DOCTYPE HTML
+<p>html</p>
+<p>head</p>
+  <p>  PDO - Create a Record - PHP CRUD Tutorial</p>
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <p>link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</p>
+
+<p>head</p>
+<p>body</p>
+
+    <!-- container -->
+  <p>  div class="container"</p>
+
+        <p>div class="page-header"</p>
+          <p>  >Create Product</p>
+      <p>  div</p>
+
+    <!-- html form to create product will be here -->
+
+  <p>  div<p> <!-- end .container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<p>script src="https://code.jquery.com/jquery-3.2.1.min.js"</p>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<p>script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"</p>
+
+<p>body</p>
+<p>html</p> </code>
+
+<h2> Step 5</h2>
+<p>Add this code in the same file where it says </p>
+  <code>  "html form to create product will be here" </code>
+
+<code>   <p> PHP insert code will be here </p>
+
+<p> html form here where the product information will be entered </p>
+<p>form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"</p>
+    <p>table class='table table-hover table-responsive table-bordered'</p>
+        <p>tr</p>
+          <p>  td Name td</p>
+          <p>  td input type='text' name='name' class='form-control'td </p>
+      <p>  tr</p>
+        <p>tr</p>
+          <p>  td Description td</p>
+            <p>td textarea name='description' class='form-control'textarea td</p>
+      <p>  tr</p>
+        <p>tr</p>
+            <p>td Price td</p>
+          <p>  td input type='text' name='price' class='form-control' td</p>
+        <p>tr</p>
+        <p>tr</p>
+          <p>  td/td</p>
+            <p>td</p>
+                <p>input type='submit' value='Save' class='btn btn-primary' /><p>
+                <p>a href='index.php' class='btn btn-danger'>Back to read products</p>
+            <p>td</p>
+        <p>tr</p>
+    <p>table</p>
+<p>form</p>
+</code>
+<h2>Step 6</h2>
+<p> staying in the “Create.php” file, add this code in where it says</p>
+<p> <code> -- PHP insert code will be here --</code></p>
+
+<code> ?php
+if($_POST){
+
+    // include database connection
+    include 'config/database.php';
+
+    try{
+
+        // insert query
+        $query = "INSERT INTO products SET name=:name, description=:description, price=:price, created=:created";
+
+        // prepare query for execution
+        $stmt = $con->prepare($query);
+
+        // posted values
+        $name=htmlspecialchars(strip_tags($_POST['name']));
+        $description=htmlspecialchars(strip_tags($_POST['description']));
+        $price=htmlspecialchars(strip_tags($_POST['price']));
+
+        // bind the parameters
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':price', $price);
+
+        // specify when this record was inserted to the database
+        $created=date('Y-m-d H:i:s');
+        $stmt->bindParam(':created', $created);
+
+        // Execute the query
+        if($stmt->execute()){
+            echo "div class='alert alert-success'>Record was saved.";
+        }else{
+            echo "div class='alert alert-danger'>Unable to save record.<";
+        }
+
+    }
+
+    // show error
+    catch(PDOException $exception){
+        die('ERROR: ' . $exception->getMessage());
+    }
+}
+?
+</code>
+<h2> Step 7</h2>
+
+<p>: YAY! Go ahead and enter in your URL into the webpage, you will be able to see the user fill out form.
+( Example URL  HTTP://LOCALHOST/PHP_CRUD/CREATE.PHP )</p>
+
+<p> Go ahead and try to add a “Create Product” and if it works it will pop up on phpMyAdmin database table. Go check it out. </p>
+<h2> Step 8</h2>
+<p>Create a “Index.php” file, add this code </p>
+<code><p>DOCTYPE HTML</p></code>
+<code><p>html</p>
+<p>head</p>
+    <p>title>PDO - Read Records - PHP CRUD Tutorial</p>
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <p>link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" </p>
+
+    <!-- custom css -->
+    <p>style</p>
+    <p>.m-r-1em{ margin-right:1em; }</p>
+    <p>.m-b-1em{ margin-bottom:1em; }</p>
+    <p>.m-l-1em{ margin-left:1em; }</p>
+  <p>  .mt0{ margin-top:0; }</p>
+    <p>style </p>
+
+<p>head</p>
+<p>body</p>
+
+    <!-- container -->
+    <p>div class="container"</p>
+
+        <p>div class="page-header"</p>
+            <p>h1>Read Products</p>
+        <p>div</p>
+
+        <!-- PHP code to read records will be here -->
+
+    <p>div</p> <!-- end .container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<p>script src="https://code.jquery.com/jquery-3.2.1.min.js"></p>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<p>script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></p>
+
+<!-- confirm delete record will be here -->
+
+<p>body</p>
+<p>html</p>
+</code>
+<p>Where it says : <code> PHP code to read records will be here </code>
+In the same file, add this underneath</p>
+<code><p> ?php</p>
+<p>// include database connection</p>
+<p>include 'config/database.php';</p>
+
+<p>// delete message prompt will be here</p>
+
+<p>// select all data</p>
+<p>$query = "SELECT id, name, description, price FROM products ORDER BY id DESC";</p>
+<p>$stmt = $con->prepare($query);</p>
+<p>$stmt->execute();</p>
+
+<p>// this is how to get number of rows returned</p>
+<p>$num = $stmt->rowCount();</p>
+
+<p>// link to create record form</p>
+<p>echo "a href='create.php' class='btn btn-primary m-b-1em'>Create New Product<"</p>
+
+<p>//check if more than 0 record found</p>
+<p>if($num>0)</p>
+
+  <p>  // data from database will be here</p>
 
 
+
+<p>// if no records found</p>
+<p>else</p>
+  <p>  echo div class='alert alert-danger'>No records found."</p>
+
+<p>Again, in the same code, add this code after this sentence <code>// data from database will be here</code></p>
+<p><code>echo "table class='table table-hover table-responsive table-bordered'>";//start table</code></p>
+<p>//creating our table heading</p>
+    <p>echo "tr";</p>
+      <p>  echo "th ID th</p>
+      <p>  echo "th Name th</p>
+      <p>  echo "th Description th</p>
+        <p>echo " th Price th</p>
+      <p>  echo " th Action th</p>
+    <p>echo "/tr";</p>
+
+  <p>  // table body will be here</p>
+
+<p>// end table</p>
+<p>echo "table";</p>
+<p>Add this code under, // table body will be here</p>
+<p>// retrieve our table contents</p>
+<p>// fetch() is faster than fetchAll()</p>
+<p>// http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop</p>
+<p>while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){</p>
+    <p>// extract row</p>
+    <p>// this will make $row['firstname'] to</p>
+    <p>// just $firstname only</p>
+    <p>extract($row);</p>
+
+    <p>// creating new table row per record</p>
+    <p>echo "tr";</p>
+      <p>  echo "td {$id} td";</p>
+      <p>  echo "td {$name} td";</p>
+    <p>    echo "td {$description} td";</p>
+      <p>  echo " td ${$price} td";</p>
+      <p>  echo "td";</p>
+          <p>  // read one record</p>
+          <p>  echo "a href='read_one.php?id={$id}' class='btn btn-info m-r-1em'>Read";</p>
+
+          <p>  // we will use this links on next part of this post</p>
+          <p>  echo "a href='update.php?id={$id}' class='btn btn-primary m-r-1em'>Edit<";</p>
+
+          <p>  // we will use this links on next part of this post</p>
+          <p>  echo "a href='#' onclick='delete_user({$id});'  class='btn btn-danger'>Delete</p>
+        <p>echo "td";</p>
+    <p>echo "tr";</p> </code>
+    <h2> Step 9</h2>
+<p>Again, go back to that same URL that you went to in step 7. You will see the records retrieved from the database</p>
+<h2>Step 10</h2>
+
+<code>  <p>!DOCTYPE HTML</p>
+  <p>html</p>
+  <p>head</p>
+      <p>title PDO - Read One Record - PHP CRUD Tutorial title</p>
+
+      <!-- Latest compiled and minified Bootstrap CSS -->
+      <p>link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" </p>
+
+  <p>head</p>
+  <p>body</p>
+
+
+      <!-- container -->
+      <p>div class="container"</p>
+
+          <p>div class="page-header"</p>
+          <p>  h1 Read Product h1</p>
+          <p>div</p>
+
+          <!-- PHP read one record will be here -->
+
+          <!-- HTML read one record table will be here -->
+
+      <p>div</p><!-- end .container -->
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <p>script src="https://code.jquery.com/jquery-3.2.1.min.js" script</p>
+
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <p>script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"script</p>
+
+  <p>body</p>
+  <p>html</p>
+</code>
+<p>Where it states <code> PHP read one record will be here </code></p>
+<code><p>Add this code</p>
+<p>?php</p>
+<p>// get passed parameter value, in this case, the record ID</p>
+<p>// isset() is a PHP function used to verify if a value is there or not</p>
+<p>$id=isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');</p>
+
+<p>//include database connection</p>
+<p>include 'config/database.php';</p>
+
+<p>// read current record's data</p>
+<p>try </p>
+    <p>// prepare select query</p>
+    <p>$query = "SELECT id, name, description, price FROM products WHERE id = ? LIMIT 0,1";</p>
+  <p>  $stmt = $con->prepare( $query );</p>
+
+    <p>// this is the first question mark</p>
+    <p>$stmt->bindParam(1, $id);</p>
+
+  <p>  // execute our query</p>
+    <p>$stmt->execute();</p>
+
+    <p>// store retrieved row to a variable</p>
+    <p>$row = $stmt->fetch(PDO::FETCH_ASSOC);</p>
+
+  <p>  // values to fill up our form</p>
+    <p>$name = $row['name'];</p>
+  <p>  $description = $row['description'];</p>
+  <p>  $price = $row['price'];</p>
+
+
+<p>// show error</p>
+<p>catch(PDOException $exception)</p>
+  <p>  die('ERROR: ' . $exception->getMessage());</p>
+
+?>
+</code>
+<p>In the same “create_one.php” and this code under the sentence <code> HTML read one record table will be here </code></p>
+<!--we have our html table here where the record will be displayed-->
+<code><p>table class='table table-hover table-responsive table-bordered'</p>
+    <p>tr</p>
+        <p>td Name td</p>
+        <p>td?php echo htmlspecialchars($name, ENT_QUOTES);  ?</p>
+    <p>tr</p>
+    <p>tr</p>
+        <p>td Description td</p>
+        <p>td ?php echo htmlspecialchars($description, ENT_QUOTES);  ?td</p>
+    <p>tr</p>
+    <p>tr</p>
+        <p>td Price td</p>
+        <p>td ?php echo htmlspecialchars($price, ENT_QUOTES);  ?</p>
+    <p>tr</p>
+    <p>tr</p>
+        <p>td td</p>
+        <p>td</p>
+            <p>a href='index.php' class='btn btn-danger'>Back to read products</p>
+        <p>td</p>
+    <p>tr</p>
+<p>table</p>
+</code>
+<h2>Step 11</h2>
+<p>go back to the same URL and with the new “read_one.php” file you should be able to read the products on the app. Go ahead and see if that works.</p>
+<h2> Step 12</h2>
+<p>create new “update.php” file add this following code </p>
+<code><p>DOCTYPE HTML</p>
+<p>html</p>
+<p>head</p>
+    <p>title PDO - Update a Record - PHP CRUD Tutorial title</p>
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <p>link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /</p>
+
+<p>head</p>
+<p>body</p>
+
+    <!-- container -->
+    <p>div class="container"</p>
+
+        <p>div class="page-header"</p>
+            <p>h1 Update Product h1</p>
+        <p>div</p>
+
+        <!-- PHP read record by ID will be here -->
+
+        <!-- HTML form to update record will be here -->
+
+    <p>div</p> <!-- end .container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<p>script src="https://code.jquery.com/jquery-3.2.1.min.js">script</p>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<p>script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" script</p>
+
+<p>body</p>
+<p>html</p>
+<p>Replace <code> PHP read record by ID will be here </code>
+With </p>
+<p> ?php</p>
+<p>// get passed parameter value, in this case, the record ID</p>
+<p>// isset() is a PHP function used to verify if a value is there or not</p>
+<p>$id=isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');</p>
+
+<p>//include database connection</p>
+<p>include 'config/database.php';</p>
+
+<p>// read current record's data</p>
+<p>try </p>
+  <p>  // prepare select query</p>
+    <p>$query = "SELECT id, name, description, price FROM products WHERE id = ? LIMIT 0,1";</p>
+  <p>  $stmt = $con->prepare( $query );</p>
+
+    <p>// this is the first question mark</p>
+    <p>$stmt->bindParam(1, $id);</p>
+
+    <p>// execute our query</p>
+  <p>  $stmt->execute();</p>
+
+  <p>  // store retrieved row to a variable</p>
+  <p>  $row = $stmt->fetch(PDO::FETCH_ASSOC);</p>
+
+  <p>  // values to fill up our form</p>
+  <p>  $name = $row['name'];</p>
+    <p>$description = $row['description'];</p>
+  <p>  $price = $row['price'];</p>
+
+
+<p>// show error</p>
+<p>catch(PDOException $exception)</p>
+  <p>  die('ERROR: ' . $exception->getMessage());</p>
+<p>?</p>
+</code>
+<p>Replace <code> HTML form to update record will be here </code> With </p>
+<code> PHP post to update record will be here </code>
+
+<code>we have our html form here where new record information can be updated</code>
+<code><p>form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post"</p>
+    <p>table class='table table-hover table-responsive table-bordered'</p>
+        <p>tr</p>
+            <p>td Name td</p>
+            <p>td input type='text' name='name' value="<?php echo htmlspecialchars($name, ENT_QUOTES);  ?>" class='form-control' td</p>
+        <p>tr<p>
+        <p>tr</p>
+            <p>td Description td</p>
+            <p>td textarea name='description' class='form-control'><?php echo htmlspecialchars($description, ENT_QUOTES);  textarea td</p>
+        <p>tr</p>
+        <p>tr</p>
+            <p>td Price td</p>
+            <p>td input type='text' name='price' value="<?php echo htmlspecialchars($price, ENT_QUOTES);  ?>" class='form-control' td</p>
+        <p>tr</p>
+        <p>tr</p>
+            <p>td td</p>
+            <p>td<p>
+                <p>input type='submit' value='Save Changes' class='btn btn-primary' /</p>
+                <p>a href='index.php' class='btn btn-danger'>Back to read products</</p>
+            <p>td</p>
+        <p>tr</p>
+    <p>table</p>
+<p>form</p>
+</code>
+<p> Again, replace <code>!PHP post to update record will be here </code>
+With </p>
+<code><p>php</p>
+
+<p>// check if form was submitted</p>
+<p>if($_POST)</p>
+
+  <p>  try</p>
+
+      <p>  // write update query</p>
+      <p>  // in this case, it seemed like we have so many fields to pass and </p>
+      <p>  // it is better to label them and not use question marks</p>
+        <p>$query = "UPDATE products</p>
+                    <p>SET name=:name, description=:description, price=:price </p>
+                  <p>  WHERE id = :id";</p>
+
+      <p>  // prepare query for excecution</p>
+      <p>  $stmt = $con->prepare($query);
+
+      <p>  // posted values</p>
+      <p>  $name=htmlspecialchars(strip_tags($_POST['name']));</p>
+      <p>  $description=htmlspecialchars(strip_tags($_POST['description']));</p>
+      <p>  $price=htmlspecialchars(strip_tags($_POST['price']));</p>
+
+        <p>// bind the parameters
+      <p>  $stmt->bindParam(':name', $name);</p>
+      <p>  $stmt->bindParam(':description', $description);</p>
+      <p>  $stmt->bindParam(':price', $price);</p>
+      <p>  $stmt->bindParam(':id', $id);</p>
+
+      <p>  // Execute the query</p>
+      <p>  if($stmt->execute()){</p>
+        <p>    echo "div class='alert alert-success'>Record was updated.div>";</p>
+      <p>  }else{
+        <p>    echo "div class='alert alert-danger'>Unable to update record. Please try again.div>";</p>
+
+         <p>  // show errors</p>
+  <p>  catch(PDOException $exception){</p>
+    <P>    die('ERROR: ' . $exception->getMessage());</p>
+
+<p>?></p>
+</code>
+<h2>Step 13</h2>
+<p>go back to URL and look at the changes, you will see an update products page. </p>
+<h2> Step 14</h2>
+<p>try to add a product on the website and go look at your phpMyAdmin database table and if the changes are updated there as well, everything is working just right! </p>
+<h2>Step 15</h2>
+<p>Go back to “index.php” file and replace <code>// delete message prompt will be here</code>
+With </p>
+<code><p>$action = isset($_GET['action']) ? $_GET['action'] : "";</p>
+
+<p>if($action=='deleted'){</p>
+  <p>  echo "div class='alert alert-success'>Record was deleted.div>";</p>
+</code>
+<p>Replace <code> confirm delete record will be here</code>
+With </p>
+<code><p>script type='text/javascript'></p>
+<p>// confirm record deletion</p>
+<p>function delete_user( id ){</p>
+
+    <p>var answer = confirm('Are you sure?');</p>
+    <p>if (answer){</p>
+      <p>  // if user clicked ok, </p>
+      <p>  // pass the id to delete.php and execute the delete query</p>
+      <p>  window.location = 'delete.php?id=' + id;</p>
+
+<p>script</p>
+</code>
+<h2> Step 16</h2>
+<p>: Create a new file called “delete.php” file and add this code. </p>
+<code><p>php</p>
+<p>// include database connection</p>
+<p>include 'config/database.php';</p>
+
+<p>try {</p>
+
+    <p>// get record ID</p>
+    <p>// isset() is a PHP function used to verify if a value is there or not</p>
+    <p>$id=isset($_GET['id']) ? $_GET['id'] : die('ERROR: Record ID not found.');</p>
+
+  <p>  // delete query</p>
+  <p>  $query = "DELETE FROM products WHERE id = ?";</p>
+  <p>  $stmt = $con->prepare($query);</p>
+  <P>  $stmt->bindParam(1, $id);</p>
+
+  <p>  if($stmt->execute()){</p>
+      <p>  // redirect to read records page and </p>
+      <p>  // tell the user record was deleted</p>
+      <p>  header('Location: index.php?action=deleted');</p>
+  <p>  }else{</p>
+  <p>      die('Unable to delete record.');</p>
+
+
+
+<p>// show error</p>
+<p>catch(PDOException $exception){</p>
+  <p>  die('ERROR: ' . $exception->getMessage());</p>
+
+<p>?></p>
+</code>
+<p>Now when you go to the URL website, you should be able to delete the products, go ahead and try to. When you go back on the phpMyAdmin database the product you deleted should be gone, if that is true, once again you are doing it correctly</p>
+<h2>Congratulations! You have completed your PHP Crud app. Thank you for reading :)</h2>
 </body>
 
 </html>
