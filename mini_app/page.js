@@ -19,7 +19,7 @@ function calcTime(dates) {
 	if(typeof(dates) == 'undefined'){
 		date = new Date(newYear).getTime();
 	}else {
-		date = new Date(dates).getTime() +14400000;
+		date = new Date(dates).getTime();
 	}
 
 	function updateTimer(date){
