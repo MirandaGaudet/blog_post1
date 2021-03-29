@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="style.css">
 <title> Angular Name Generator </title
 <body>
 
@@ -13,13 +14,13 @@ Last Name: <input type="text" ng-model="lastName"><br>
 Full Name: {{firstName + " " + middleName + " " + lastName}}
 
 </div>
-
+<button type="button" onclick="alert('Congratulations you typed your name!')">Click when done</button>
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.middleName = "Frank";
-    $scope.lastName = "Doe";
+    $scope.firstName = "";
+    $scope.middleName = "";
+    $scope.lastName = "";
 });
 </script>
 
