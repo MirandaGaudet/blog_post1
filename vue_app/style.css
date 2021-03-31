@@ -2,3 +2,7 @@ body {
   padding: 2em;
   font-family: fantasy;
 }
+#card {
+  border: 2px sold Gray;
+  border-radius: 10px;
+}
