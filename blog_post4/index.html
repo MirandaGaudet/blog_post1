@@ -7,7 +7,45 @@
   </head>
   <body>
   <h1> How i developed my Angular app </h1>
+<p> Like always, before i get into how i developed my app specifically angular, i think its always important to give a background of what Angular really is. Definition, Angular is a platform and framework for building single-page client applications using HTML and TypeScript.The architecture of an angular application relies on certain fundamental concepts. The basic building blocks of an angular framework are angular components that are organzied into things called Ngmodules. Those collect related code into functional sets. That all leads into what an angualr app is. Now that we went over the basics of Angular, lets get into how i developed my app.
   <h2> Step 1:</h2>
-  <p> The first Step I did was visit <link>W3Schools Angular Tutorial</link>
+  <p> The first Step I did was visit <a href="https://www.w3schools.com/angular/">W3Schools Angular Tutorial</a>and clicked on the three lines in the top left hand corner. From there, you have a variety of different of options to choose from that give a tutorial on different angular functions. I went through a bunch until i found the function i wanted to use. The tutorial that i chose was<a href="https://www.w3schools.com/angular/angular_intro.asp">AngularJS Applications.</a>
+<h2> Step 2: </h2>
+<p> From that tutorial i scrolled down until i saw "AngularJS Applications". Take a look at the code right here
+<p>  <code><!DOCTYPE html></code></p>
+<p><code>html</code></p>
+<p><code>script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"script></code></p>
+<p><code>body</code></p>
+
+<code><p>Try to change the names.</p></code>
+
+<p><code>div ng-app="myApp" ng-controller="myCtrl"</code></p>
+
+<p><code>First Name: input type="text" ng-model="firstName">br></code></p>
+<p><code>Last Name: input type="text" ng-model="lastName">br></code></p>
+<p><code>br</code></p>
+<p><code>Full Name: {{firstName + " " + lastName}}</code></p>
+
+<p><code>/div</code></p>
+
+<p><code>script</code></p>
+<p><code>var app = angular.module('myApp', []);</code></p>
+<p><code>app.controller('myCtrl', function($scope) {</code></p>
+<p><code>  $scope.firstName= "John";</code></p>
+<p><code>  $scope.lastName= "Doe";</code></p>
+
+<p><code>body</code></p>
+<p><code>html</code></p>
+
+<p> That code uses <b>modules</b> to define AngularJS applications. The<b> Controllers</b> control the applications and the <b> ng-app</b> directive defines the application, the <b> ng-controller</b> directive defines the controller. </p>
+<h2> Step 3:</h2>
+  <p> What i had to do to modify this code to my liking was i wanted to add the option to add your middle name into the input type so your middle name pops out too. so i went into the code and added <code> Middle Name input type="text" ng-model= "middleName">br></code> between <b>firstName input</b> and <b> lastName input.</b></p>
+<h2> Step 4:</h2>
+<p> My next step was i had to then manipulate <code>Full Name: {{firstName + " " + lastName}}</code> so that when i typed into the input, it would show up on the page. i ended up changing it to <code>Full Name: {{firstName + " " + middleName + " " + lastName}}</code></p>
+<h2> Step 5:</h2>
+<p> I then had to change the <code> app.controller.</code> I added <code>  $scope.middleName = "";</code> between app.controller first and last name.
+<h2> Step 6:</h2>
+<p> Just to jazz things up a bit more i decided to add a button that you can press once your done typing your name into the name generator that pops up a notification. the code for it was. <code>button type="button" onclick="alert('Congratulations you typed your name!')">Click when done button></code> It was super simple but added in some more angular techniques and made the project more fun.</p>
+<p> I hope you enjoyed my super simple and fun angular app i developed check it out <a href="https://mirandagaudet.com/blog_post1/angular_app/">Angular name generator</a>
   </body>
 </html>
