@@ -59,7 +59,7 @@ const renderCalendar = () => {
     ) {
       days += `<div class="today">${i}</div>`;
     } else {
-      days += `<div>${i}</div>`;
+      days += `<div onclick="insertDate()">${i}</div>`;
     }
   }
 
