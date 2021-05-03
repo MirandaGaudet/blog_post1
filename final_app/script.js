@@ -60,7 +60,6 @@ let year = c_date.getFullYear();
                                 <input type="text" class="form-control" placeholder="Add Event" id="eventTxt">
                                 <div class="input-group-append">
                                     <button class="btn btn-danger" type="button" id="createEvent">+</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -150,6 +149,7 @@ renderCalendar(month, year)
 
     $(function(){
         function showEvent(eventDate){
+
             let storedEvents = JSON.parse(localStorage.getItem('events'));
             if (storedEvents == null){
                 $('.events-today').html('<h5 class="text-center">No events found</h5 class="text-center">');
@@ -248,6 +248,7 @@ renderCalendar(month, year)
                 $('.toast-body').html('Your event have been added');
                 $('.toast').toast('show');
                 showEvent(eventDate);
+
             }
         })
     })
