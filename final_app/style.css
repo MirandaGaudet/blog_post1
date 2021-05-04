@@ -69,9 +69,7 @@ h1{
      line-height:50px;
      cursor:pointer
      }html body
-.card-body .events span {
-  background: red;
-}
+
    .card-body .days span:hover {
      background:#99A3C2;
      }html body
