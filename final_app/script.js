@@ -158,7 +158,7 @@ renderCalendar(month, year)
                 let eventsList = Object.keys(eventsToday).map(k => eventsToday[k]);
                 if(eventsList.length>0){
                     let eventsLi ='';
-                    eventsList.forEach(event =>  $('.events-today').html(eventsLi +=`<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    eventsList.forEach(event =>  $('.events-today').html(eventsLi +=`<div class="alert alert-danger alert-dismissible fade show" role="alert" onclick="addTimer()">
                     ${event.eventText}
                     <button type="button" class="close remove-event" data-event-id="${event.id}" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
@@ -248,6 +248,7 @@ renderCalendar(month, year)
                 $('.toast-body').html('Your event have been added');
                 $('.toast').toast('show');
                 showEvent(eventDate);
+
 
             }
         })
