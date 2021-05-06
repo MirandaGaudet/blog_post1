@@ -160,7 +160,7 @@ renderCalendar(month, year)
                 if(eventsList.length>0){
                     let eventsLi ='';
                     eventsList.forEach(event =>  $('.events-today').html(eventsLi +=`<div class="alert alert-danger alert-dismissible fade show" role="alert" onclick="addTimer()">
-                    ${event.eventText} + ${event.eventTime}
+                    ${event.eventText} @ ${event.eventTime}
 
                     <button type="button" class="close remove-event" data-event-id="${event.id}" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
