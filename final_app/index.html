@@ -17,10 +17,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <script src="script.js"></script>
     <script>
       function addTimer() {
-        document.getElementById('countdown').innerHTML = "it worked ";
+        var date1 = new Date();
+        var date2 = new Date(eventDate);
+
+        // To calculate the time difference of two dates
+        var differenceInTime = date2.getTime() - date1.getTime();
+
+        // To calculate the no. of days between two dates
+        var differenceInDays = differenceInTime / (1000 * 3600 * 24);
+        var differenceInHours = differenceInTime / (1000 * 3600);
+
+        //To display the final no. of days (result)
+        document.getElementById('countdown').innerHTML = Math.floor(differenceInHours);
       }
     </script>
 </body>

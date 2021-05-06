@@ -140,3 +140,11 @@ h1{
    .card#event .card-body .events-today{
      height:188px
    }
+  .active::after {
+   content: '•';
+color: #f78536;
+font-size: 1.4em;
+position: absolute;
+right: -4px;
+top: -4px;
+   }

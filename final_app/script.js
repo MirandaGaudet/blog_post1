@@ -50,7 +50,7 @@ let year = c_date.getFullYear();
                         </div>
                         <div class="card-body px-1 py-3">
                             <div class="text-center">
-                                <span class="event-date">06 June 2020</span><br>
+                                <span class="event-date" id="full-date">06 June 2020</span><br>
                                 <span class="event-day">Monday</span>
                             </div>
                             <div class="events-today my-3 px-3">
@@ -58,6 +58,7 @@ let year = c_date.getFullYear();
                             </div>
                             <div class="input-group events-input mb-3 col-10 mx-auto mt-2">
                                 <input type="text" class="form-control" placeholder="Add Event" id="eventTxt">
+                                <input type="time" id="appt" name="appt">
                                 <div class="input-group-append">
                                     <button class="btn btn-danger" type="button" id="createEvent">+</button>
                             </div>
@@ -159,7 +160,8 @@ renderCalendar(month, year)
                 if(eventsList.length>0){
                     let eventsLi ='';
                     eventsList.forEach(event =>  $('.events-today').html(eventsLi +=`<div class="alert alert-danger alert-dismissible fade show" role="alert" onclick="addTimer()">
-                    ${event.eventText}
+                    ${event.eventText} + ${event.eventTime}
+
                     <button type="button" class="close remove-event" data-event-id="${event.id}" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -216,6 +218,7 @@ renderCalendar(month, year)
             }
             let eventDate = $('.event-date').data('eventdate');
             let eventText = $('#eventTxt').val();
+            let eventTime = $('#appt').val();
             let valid = false;
             $('#eventTxt').removeClass('data-invalid');
             $('.error').remove();
@@ -241,10 +244,12 @@ renderCalendar(month, year)
                 obj.push({
                     'id' : id,
                     'eventDate': eventDate,
+                    'eventTime': eventTime,
                     'eventText': eventText
                 });
                 localStorage.setItem('events', JSON.stringify(obj));
                 $('#eventTxt').val('');
+                $('#appt').val('');
                 $('.toast-body').html('Your event have been added');
                 $('.toast').toast('show');
                 showEvent(eventDate);
