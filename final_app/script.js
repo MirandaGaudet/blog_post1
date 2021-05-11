@@ -241,6 +241,7 @@ renderCalendar(month, year)
                 else {
                     id = 1;
                 }
+
                 obj.push({
                     'id' : id,
                     'eventDate': eventDate,
@@ -258,3 +259,5 @@ renderCalendar(month, year)
             }
         })
     })
+
+    

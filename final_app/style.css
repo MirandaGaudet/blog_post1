@@ -148,3 +148,11 @@ position: absolute;
 right: -4px;
 top: -4px;
    }
+   input,
+   label {
+       margin: .1rem 0;
+       background-color: #C9D3F8;
+      padding-left: 10px;
+      padding-right: 10px;
+
+   }
