@@ -58,11 +58,13 @@ let year = c_date.getFullYear();
                             </div>
                             <div class="input-group events-input mb-3 col-10 mx-auto mt-2">
                                 <input type="text" class="form-control" placeholder="Add Event" id="eventTxt">
-                                <input type="time" id="appt" name="appt">
                                 <div class="input-group-append">
-                                    <button class="btn btn-danger" type="button" id="createEvent">+</button>
+                                <button class="btn btn-danger" type="button" id="createEvent">+</button>
                             </div>
                         </div>
+                        <p> Add Time </p>
+                        <input id="inputHours" type="text" placeholder="Hours">
+                        <input id="inputMinutes" type="text" placeholder="Minutes">
                     </div>
                 </div>
             </div>
@@ -211,6 +213,11 @@ renderCalendar(month, year)
             $('#event').addClass('d-none');
         })
         $(document).on('click', '#createEvent', function(){
+                let hour = parseInt(document.getElementById('inputHours').value);
+                let minute = parseInt(document.getElementById('inputMinutes').value);
+
+                let appt = hour % 12 + ":" + minute;
+
             let events = localStorage.getItem('events');
             let obj = [];
             if (events) {
@@ -218,7 +225,7 @@ renderCalendar(month, year)
             }
             let eventDate = $('.event-date').data('eventdate');
             let eventText = $('#eventTxt').val();
-            let eventTime = $('#appt').val();
+            let eventTime = appt;
             let valid = false;
             $('#eventTxt').removeClass('data-invalid');
             $('.error').remove();
@@ -256,8 +263,7 @@ renderCalendar(month, year)
                 showEvent(eventDate);
 
 
+
             }
         })
     })
-
-    

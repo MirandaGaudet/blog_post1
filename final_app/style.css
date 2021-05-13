@@ -150,9 +150,16 @@ top: -4px;
    }
    input,
    label {
-       margin: .1rem 0;
-       background-color: #C9D3F8;
-      padding-left: 10px;
-      padding-right: 10px;
+
+   padding-left: 5rem;
+    border-radius: 0.25rem;
+    height: 40px;
+    background: #93A7F0;
+    color: #fff;
+     display:inline-block;
 
    }
+p {
+  text-align: center;
+  padding-top: 1.5rem;
+}
